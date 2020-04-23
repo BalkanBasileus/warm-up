@@ -1,4 +1,4 @@
-# warmup
+# warm-up
 Simple warm up program for getting back into C++. 
 
 
