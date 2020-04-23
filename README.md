@@ -12,3 +12,7 @@ regarding different options. If the user wishes to continue they are
 taken back to the main menu. Sample output provided
 
 **Terminal View**
+
+![Alt text](https://github.com/BalkanBasileus/warm-up/blob/master/ScreenShots/ScreenShot01.png?raw=true "Optional Title")
+
+![Alt text](https://github.com/BalkanBasileus/warm-up/blob/master/ScreenShots/ScreenShot02.png?raw=true "Optional Title")
