@@ -66,8 +66,18 @@ int main(int argc, char const *argv[])
 	cout << "5) Quit" << endl;
 	cout << endl;
 
-	cout << "Enter: ";
+  cout << "Enter: ";
 	cin >> choice;
+
+  //Error Check
+  while(choice < 1 || choice > 5){
+
+    cin.clear();
+		cin.ignore(100,'\n');
+    
+    cout << "Enter: ";
+	  cin >> choice;
+  }
 
 		switch(choice){
 
