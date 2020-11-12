@@ -15,6 +15,8 @@
 #include <fstream>
 #include <stdlib.h>
 #include <iomanip>
+#include <vector>
+#include "bankAccount.h"
 
 using namespace std;
 
@@ -34,9 +36,9 @@ struct Stat
 //Function Declerations
 void powerFunc(char &proceed);
 void sqrtFunc(char &proceed);
-void readFile(char &proceed);
+void readFile(vector<bankAccount> &accountList, char &proceed);
 void statFunc(Stat &theArray);
-void printArray(Stat &theArray,char &proceed);
+void printArray(Stat &theArray, char &proceed);
 static void selectionSort(Stat &theArray);
 static void swapping(short &a, short &b);
 
@@ -45,10 +47,11 @@ static void swapping(short &a, short &b);
 int main(int argc, char const *argv[])
 {
 	//Variables
-	short choise;
+	short choice;
 	char proceed;
 	bool quit = false;
 	Stat theArray;
+  vector<bankAccount> accountList;
 
 	cout << "/////////////////Welcome/////////////////" << endl;
 	do{
@@ -64,9 +67,9 @@ int main(int argc, char const *argv[])
 	cout << endl;
 
 	cout << "Enter: ";
-	cin >> choise;
+	cin >> choice;
 
-		switch(choise){
+		switch(choice){
 
 			case 1:
 				powerFunc(proceed);
@@ -77,7 +80,7 @@ int main(int argc, char const *argv[])
 				break;
 
 			case 3:
-				readFile(proceed);
+				readFile(accountList, proceed);
 				break;
 
 			case 4:
@@ -188,7 +191,7 @@ void sqrtFunc(char &proceed){
 		}
 }
 
-void readFile(char &proceed){
+void readFile(vector<bankAccount> &accountList, char &proceed){
 	/*
 	 * Function description here...
 	 */
@@ -199,16 +202,33 @@ void readFile(char &proceed){
 	string fileName;
 	string line;
 
+  //bank account vars
+  string fname, lname;
+  int acct;
+  float bal;
+  short pin;
+
+
 	do{//open file
-	 cout << "Type 'BankData.txt' " << endl;
+	cout << "Type 'BankData.txt' " << endl;
     cout << "Enter the input file: "; 
     cin >> fileName;
     inFile.open(fileName.c_str());
   } while(!inFile.is_open());
 
-  while ( getline (inFile,line) )
-    {
-      cout << line << '\n';
+  //File content prompt
+  cout << endl;
+  cout << "File Contents: " << endl;
+  cout << endl;
+  cout << setw(10) << "FIRST" << setw(10) << "LAST"<< setw(10);
+  cout << "ACCOUNT" << setw(10) << "PIN" << setw(10) << "BALANCE" << endl;
+
+  // Read file. Initialize accounts. Display.
+  while (inFile >> fname >> lname >> acct >> pin >> bal)
+    { 
+      bankAccount account(fname, lname, acct, pin, bal);
+      account.display();
+      accountList.push_back( account ); 
     }
   inFile.close(); //Close file.
 }
@@ -391,21 +411,26 @@ Options:
 Enter: 3
 Type 'BankData.txt' 
 Enter the input file: BankData.txt
-Lawton Buzza	2100655	8973	111.78
-Joni Dansey	8376524	7353	148.9
-Bellanca Willers	4367987	1138	273.31
-Kandy Thursfield	4713988	9084	0.97
-Latrina Sherman	6507309	6666	16.03
-Florie Abad	9216510	1544	263.22
-Hildegarde Sargerson	5647664	6116	49.04
-Hiram Larose	3590713	5396	10.47
-Ferdie Narramore	7758159	7007	177.04
-Rock Hurworth	3083698	8107	161.37
-Nicko Pittson	4682967	3166	117.35
-Auguste Wedon	8202281	8067	175.08
-Gina Hardway	2646506	7150	235.5
-Mirna Oke	2526115	2441	252.41
-Porter Moffet	9422926	7864	152.67
+
+File Contents: 
+
+     FIRST      LAST   ACCOUNT       PIN   BALANCE
+    Lawton     Buzza   2100655      8973    111.78
+      Joni    Dansey   8376524      7353     148.9
+  Bellanca   Willers   4367987      1138    273.31
+     KandyThursfield   4713988      9084      0.97
+   Latrina   Sherman   6507309      6666     16.03
+    Florie      Abad   9216510      1544    263.22
+Hildegarde Sargerson   5647664      6116     49.04
+     Hiram    Larose   3590713      5396     10.47
+    Ferdie Narramore   7758159      7007    177.04
+      Rock  Hurworth   3083698      8107    161.37
+     Nicko   Pittson   4682967      3166    117.35
+   Auguste     Wedon   8202281      8067    175.08
+      Gina   Hardway   2646506      7150     235.5
+     Mirna       Oke   2526115      2441    252.41
+    Porter    Moffet   9422926      7864    152.67
+
 
 Options: 
 1) Raise to power
