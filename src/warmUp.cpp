@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <iomanip>
 #include <vector>
+#include <algorithm>
 #include "bankAccount.h"
 
 using namespace std;
@@ -37,6 +38,7 @@ struct Stat
 void powerFunc(char &proceed);
 void sqrtFunc(char &proceed);
 void readFile(vector<bankAccount> &accountList, char &proceed);
+void fileSortingMenu(vector<bankAccount> &accountList, char &proceed);
 void statFunc(Stat &theArray);
 void printArray(Stat &theArray, char &proceed);
 static void selectionSort(Stat &theArray);
@@ -50,8 +52,8 @@ int main(int argc, char const *argv[])
 	short choice;
 	char proceed;
 	bool quit = false;
-	Stat theArray;
-  vector<bankAccount> accountList;
+	Stat theArray;      // struct with array and stats vars
+  vector<bankAccount> accountList; // v of bankAccount objects
 
 	cout << "/////////////////Welcome/////////////////" << endl;
 	do{
@@ -91,6 +93,8 @@ int main(int argc, char const *argv[])
 
 			case 3:
 				readFile(accountList, proceed);
+        fileSortingMenu(accountList, proceed);
+        accountList.clear(); //Clear v in case user retries 
 				break;
 
 			case 4:
@@ -209,8 +213,7 @@ void readFile(vector<bankAccount> &accountList, char &proceed){
 	//File input variables
 	ifstream inFile;
 	ofstream outFile;
-	string fileName;
-	string line;
+	string fileName = "BankData.txt";
 
   //bank account vars
   string fname, lname;
@@ -220,9 +223,6 @@ void readFile(vector<bankAccount> &accountList, char &proceed){
 
 
 	do{//open file
-	cout << "Type 'BankData.txt' " << endl;
-    cout << "Enter the input file: "; 
-    cin >> fileName;
     inFile.open(fileName.c_str());
   } while(!inFile.is_open());
 
@@ -233,14 +233,93 @@ void readFile(vector<bankAccount> &accountList, char &proceed){
   cout << setw(10) << "FIRST" << setw(10) << "LAST"<< setw(10);
   cout << "ACCOUNT" << setw(10) << "PIN" << setw(10) << "BALANCE" << endl;
 
-  // Read file. Initialize accounts. Display.
+  // Read file. Initialize accounts. Display each line.
   while (inFile >> fname >> lname >> acct >> pin >> bal)
     { 
       bankAccount account(fname, lname, acct, pin, bal);
       account.display();
-      accountList.push_back( account ); 
+      accountList.push_back( account ); // add account
     }
   inFile.close(); //Close file.
+}
+
+void fileSortingMenu(vector<bankAccount> &accountList, char &proceed){
+  /*
+   * Prompt to sort accountLists, Ascend/Descend and display.
+   */
+
+  enum sortOrder{ASCEND = 'A',DESCEND = 'D'}; // Sort Order.
+
+  //Local Vars
+  char order;
+
+  //Prompt
+  cout << endl;
+  cout << "Sort Ascending or Descending [A/D]: ";
+  cin >> order;
+  cout << endl;
+
+  //Error Check
+  while(toupper(order) != ASCEND && toupper(order) != DESCEND){
+
+    cin.clear();
+		cin.ignore(100,'\n');
+
+    cout << "Sort Ascending or Descending [A/D]: ";
+    cin >> order;
+  }
+
+  switch ( toupper(order) )
+  {
+  case ASCEND: 
+    sort( accountList.begin(), accountList.end() );
+    
+    cout << endl;
+    cout << "ASCENDING: " << endl;
+    cout << endl;
+    cout << setw(10) << "FIRST" << setw(10) << "LAST"<< setw(10);
+    cout << "ACCOUNT" << setw(10) << "PIN" << setw(10) << "BALANCE" << endl;
+
+    for (int i = 0; i < accountList.size(); i++)
+    {
+      accountList[i].display();
+    }
+
+    break;
+  case DESCEND:
+    sort( accountList.begin(), accountList.end() );
+    reverse( accountList.begin(), accountList.end() );
+
+    cout << endl;
+    cout << "DESCENDING: " << endl;
+    cout << endl;
+    cout << setw(10) << "FIRST" << setw(10) << "LAST"<< setw(10);
+    cout << "ACCOUNT" << setw(10) << "PIN" << setw(10) << "BALANCE" << endl;
+
+    for (int i = 0; i < accountList.size(); i++)
+    {
+      accountList[i].display();
+    }
+
+    break;
+  }
+
+  cout << endl;
+  cout << "Would you like to continue [y/n]: ";
+	cin >> proceed;
+
+	tolower(proceed);
+		
+		//Error Check
+		while( proceed != 'y' && proceed != 'n' ){
+
+			cin.clear();
+			cin.ignore(100,'\n');
+
+			cout << "Would you like to continue [y/n]: ";
+			cin >> proceed;
+		}
+
 }
 
 void statFunc(Stat &theArray){
@@ -250,7 +329,7 @@ void statFunc(Stat &theArray){
 
 	//Variables
 	short size; 
-   srand (time(NULL));						//Initialize random
+  srand (time(NULL));						//Initialize random
 
 	//Prompt
 	cout << "Enter the size of array[less than 300]: ";
@@ -269,6 +348,7 @@ void statFunc(Stat &theArray){
 
 	theArray.size = size;
 	theArray.array = new short[size];
+  theArray.min = size;    // temporarily until initialization.
 
 	//Initialize array and obtain data
 	for (int i = 0; i < size; i++)
@@ -292,7 +372,6 @@ void statFunc(Stat &theArray){
 		}
 	}
 
-
 	//Calculate avg / median.
 	theArray.avg = static_cast<short>(theArray.sum) / size;
 
@@ -308,7 +387,7 @@ void printArray(Stat &theArray,char &proceed){
 	
 	for (int i = 0; i < theArray.size; i++)
 	{
-		if(i % 4 == 0){
+		if(i % 5 == 0){
 			cout << endl;
 		}	
 
