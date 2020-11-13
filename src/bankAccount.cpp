@@ -23,11 +23,26 @@ bankAccount::bankAccount(string _firstName, string _lastName, int _account,  sho
   balance = _bal;
 } 
 
+bankAccount::~bankAccount()
+{
+  
+}
+
+int bankAccount::getAccountNumber() const
+{
+  return account;
+}
+
+bool bankAccount::operator<(const bankAccount &rhs) const
+{ // Overload for sort in readfile function in main.cpp
+    return ( account < rhs.account );
+}
+
 // Display Account
 void bankAccount::display() const
 { 
   cout << right;
-  
+
   cout << setw(10) << firstName << setw(10) << lastName;
   cout << setw(10) << account  << setw(10) <<  pin  << setw(10) << balance << endl;
 
