@@ -13,6 +13,8 @@ taken back to the main menu. Sample output provided
 
 **Terminal View**
 
-![Alt text](https://github.com/BalkanBasileus/warm-up/blob/master/ScreenShots/ScreenShot01.png?raw=true "Optional Title")
+![Alt text](https://github.com/BalkanBasileus/warm-up/blob/master/ScreenShots/Screen%20shot%203.png?raw=true "Optional Title")
 
-![Alt text](https://github.com/BalkanBasileus/warm-up/blob/master/ScreenShots/ScreenShot02.png?raw=true "Optional Title")
+![Alt text](https://github.com/BalkanBasileus/warm-up/blob/master/ScreenShots/Screen%20shot%202.png?raw=true "Optional Title")
+
+![Alt text](https://github.com/BalkanBasileus/warm-up/blob/master/ScreenShots/Screen%20shot%201.png?raw=true "Optional Title")
