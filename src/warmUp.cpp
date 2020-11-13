@@ -464,6 +464,9 @@ static void swapping(short &a, short &b){         //swap the content of a and b
 /*
 SAMPLE OUTPUT
 
+/*
+SAMPLE OUTPUT
+
 /////////////////Welcome/////////////////
 
 Options: 
@@ -473,33 +476,7 @@ Options:
 4) Random Array
 5) Quit
 
-Enter: 1
-Enter base and power: 2 5
-Answer = 32
-Would you like to continue [y/n]: y
-
-Options: 
-1) Raise to power
-2) Square Root
-3) Read File
-4) Random Array
-5) Quit
-
-Enter: 2
-Enter number [0 < n < 1000]: 3
-Answer = 1.73205
-Would you like to continue [y/n]: y
-
-Options: 
-1) Raise to power
-2) Square Root
-3) Read File
-4) Random Array
-5) Quit
-
 Enter: 3
-Type 'BankData.txt' 
-Enter the input file: BankData.txt
 
 File Contents: 
 
@@ -520,6 +497,29 @@ Hildegarde Sargerson   5647664      6116     49.04
      Mirna       Oke   2526115      2441    252.41
     Porter    Moffet   9422926      7864    152.67
 
+Sort Ascending or Descending [A/D]: a
+
+
+ASCENDING: 
+
+     FIRST      LAST   ACCOUNT       PIN   BALANCE
+    Lawton     Buzza   2100655      8973    111.78
+     Mirna       Oke   2526115      2441    252.41
+      Gina   Hardway   2646506      7150     235.5
+      Rock  Hurworth   3083698      8107    161.37
+     Hiram    Larose   3590713      5396     10.47
+  Bellanca   Willers   4367987      1138    273.31
+     Nicko   Pittson   4682967      3166    117.35
+     KandyThursfield   4713988      9084      0.97
+Hildegarde Sargerson   5647664      6116     49.04
+   Latrina   Sherman   6507309      6666     16.03
+    Ferdie Narramore   7758159      7007    177.04
+   Auguste     Wedon   8202281      8067    175.08
+      Joni    Dansey   8376524      7353     148.9
+    Florie      Abad   9216510      1544    263.22
+    Porter    Moffet   9422926      7864    152.67
+
+Would you like to continue [y/n]: y
 
 Options: 
 1) Raise to power
@@ -529,27 +529,42 @@ Options:
 5) Quit
 
 Enter: 4
-Enter the size of array[less than 300]: 34
+Enter the size of array[less than 300]: 100
 
 Array Contents: 
 
-    8   17   33   40
-   37   47   64   74
-   75   78   80   85
-   97  104  116  137
-  137  153    3  209
-  194  211  170  215
-  221  228  232  232
-  232  237  248  248
-   60  250
+   12    1   14   16   16
+   20   21   22   26   38
+   34   42   43   43   45
+   48   50   51   52   54
+   55   55   64   64   64
+   75   81   85   87   89
+   90   91   97   99  103
+  104  107  109  113  114
+  119  121  123  126  130
+  136  138  139  140  141
+  142  147  149  156  162
+  165  167  170  172  174
+  129  176  178  179  181
+  182  183  184  185  186
+  188  190  193  195  196
+  200  200  201  202  207
+  209  211  211  212  214
+  216  220  225  226  227
+  227  231  231  233  239
+  240  240  241  242  248
 
 Array Stats: 
 
-Sum:   4572
-Min:      0
-Max:    250
-Avg:    134
+Sum:  13589
+Min:      1
+Max:    248
+Avg:    135
 Would you like to continue [y/n]: n
+Goodbye.
+
+*/
+e to continue [y/n]: n
 Goodbye.
 
 */
